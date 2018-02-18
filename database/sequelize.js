@@ -28,7 +28,7 @@ const Stock = sequelize.define('stock', {
   updatedAt: Sequelize.DATE
 })
 
-Stock.findAll({
+const items = Stock.findAll({
   logging: console.log,
 
   
@@ -40,6 +40,12 @@ Stock.findAll({
   })
 
   console.log(groceries)
+  return groceries;
+
+});
+
+
+
 
   
 
@@ -50,9 +56,8 @@ Stock.findAll({
   // }));
   
   // console.log(`Description: ${data.description} \n Quantity: ${data.quantity}`);
-});
-
-Stock
 
 
-module.exports.getStock = Stock.findAll;
+
+
+module.exports.getGroceries = items;
