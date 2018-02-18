@@ -13,6 +13,13 @@ class AddGrocery extends React.Component {
       description: e.target.value
     });
   }
+  onClick() {
+    let item = {
+      description: this.state.description,
+      quantity: this.state.quantity
+    };
+    this.props.onAddItem(item);
+  }
 
   render () {
     return (
@@ -20,7 +27,7 @@ class AddGrocery extends React.Component {
       Description: <input type="text" onChange={(e) => this.setState({description: e.target.value})  } /><br />
       Quantity: <input type="text" onChange={(e) => this.setState({quantity: parseInt(e.target.value)})  } />
 
-      <button>Add Grocery</button>
+      <button onClick={this.onClick.bind(this)}>Add Grocery</button>
       </div>
     )
   }

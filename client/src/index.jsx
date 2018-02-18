@@ -15,12 +15,21 @@ class App extends React.Component {
       ]
     }
   }
+  
+  onAddItem(item) {
+    let $tmp = this.state.list.slice();
+    item.id = $tmp.length + 1;
+    $tmp.push(item);
+    this.setState({
+      list: $tmp
+    })
+  }
 
   
   render () {
     return (
       <div>
-     <AddGrocery />
+     <AddGrocery onAddItem={this.onAddItem.bind(this)} />
     <GroceryList groceries={this.state.list} />
     </div>
     );
