@@ -39,11 +39,27 @@ const items = Stock.findAll({
     });
   })
 
-  console.log(groceries)
+  // console.log(groceries)
   return groceries;
 
 });
 
+
+const addItem = (value) =>  {
+  console.log(value);
+  Stock.sync().then(() => {
+    console.log(value)
+    return Stock.create({description: value.description, quantity: value.quantity})
+  });
+    
+//     ({
+//   quantity: value.quantity,
+//   description: value.description
+// }).then((val) => {
+//   console.log(val);
+// });
+}
+  
 
 
 
@@ -61,3 +77,4 @@ const items = Stock.findAll({
 
 
 module.exports.getGroceries = items;
+module.exports.addItem = addItem.bind(this);
