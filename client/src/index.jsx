@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import $ from 'jquery';
 import GroceryList from './components/GroceryList.jsx';
 import AddGrocery from './components/AddGrocery.jsx'
 
@@ -14,8 +15,20 @@ class App extends React.Component {
         {id: 4, quantity: 1, description: "iced coffee"}
       ]
     }
+    this.retrieveList()
   }
   
+  retrieveList() {
+    $.ajax({
+      url: '/items',
+      contentType: 'application/json',
+      success: (val) => {
+        this.setState({
+          list: val.fulfillmentValue
+        })
+      }
+    })
+  }
   onAddItem(item) {
     let $tmp = this.state.list.slice();
     item.id = $tmp.length + 1;
