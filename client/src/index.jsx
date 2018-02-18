@@ -36,6 +36,17 @@ class App extends React.Component {
     this.setState({
       list: $tmp
     })
+    $.ajax({
+      url: '/items',
+      method: 'POST',
+      data: JSON.stringify(item),
+      contentType: 'application/json',
+      success: (data) => {
+        if (data) {
+          console.log(data);
+        }
+      }
+    })
   }
 
   
