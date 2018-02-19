@@ -31,11 +31,8 @@ class App extends React.Component {
   }
   onAddItem(item) {
     let $tmp = this.state.list.slice();
-    item.id = $tmp.length + 1;
-    $tmp.push(item);
-    this.setState({
-      list: $tmp
-    })
+  
+    
     $.ajax({
       url: '/items',
       method: 'POST',
@@ -43,18 +40,25 @@ class App extends React.Component {
       contentType: 'application/json',
       success: (data) => {
         if (data) {
-          console.log(data);
+          
+          this.retrieveList();
         }
       }
-    })
+    });
+    this.retrieveList();
+
   }
 
   
   render () {
     return (
       <div>
-     <AddGrocery onAddItem={this.onAddItem.bind(this)} />
-    <GroceryList groceries={this.state.list} />
+     <AddGrocery onAddItem={this.onAddItem.bind(this)} onChange={() => {
+
+     }} />
+    <GroceryList groceries={this.state.list} onChange={(e) => {
+      
+    }} />
     </div>
     );
   }

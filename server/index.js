@@ -14,6 +14,27 @@ app.get('/items', (req, res) => {
 
 })
 
+app.get('/test', (req, res) => {
+  // sqlz.getLatestItems().isFulfilled
+  // sqlz.getLatestItems().isFulfilled
+  sqlz.Stock.findAll({
+    logging: console.log  
+  }).then((groceries) => {
+    groceries = groceries.map((ele) => {
+      return ele.get({
+        plain: true
+      });
+    })
+  
+    // console.log(groceries)
+    res.send(groceries);
+    return groceries;
+  
+  });
+
+  // res.send(sqlz.getLatestItems().then((val) => val));
+})
+
 app.post('/items', jsonParser, (req, res) => {
   console.log(req.body);
   if (req.body) {

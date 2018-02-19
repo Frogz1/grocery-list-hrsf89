@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class AddGrocery extends React.Component {
   constructor(props) {
     super(props);
@@ -18,6 +19,7 @@ class AddGrocery extends React.Component {
       description: this.state.description,
       quantity: this.state.quantity
     };
+    
     this.props.onAddItem(item);
   }
 

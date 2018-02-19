@@ -28,22 +28,38 @@ const Stock = sequelize.define('stock', {
   updatedAt: Sequelize.DATE
 })
 
-const items = Stock.findAll({
-  logging: console.log,
+const items =
 
+  Stock.findAll({
+    logging: console.log  
+  }).then((groceries) => {
+    groceries = groceries.map((ele) => {
+      return ele.get({
+        plain: true
+      });
+    })
   
-}).then((groceries) => {
-  groceries = groceries.map((ele) => {
-    return ele.get({
-      plain: true
-    });
-  })
-
-  // console.log(groceries)
-  return groceries;
-
-});
-
+    // console.log(groceries)
+    return groceries;
+  
+  });
+ 
+let getLatestItems = function() {
+  let item;
+  Stock
+    .sync()
+    .then(() => {
+      return Stock.findAll({}).then((items) => {
+        items = items.map((ele) => {
+          return ele.get({
+            plain: true
+          })
+          item = items;
+        })
+      })
+    })
+    return item;
+}
 
 const addItem = (value) =>  {
   console.log(value);
@@ -76,5 +92,8 @@ const addItem = (value) =>  {
 
 
 
-module.exports.getGroceries = items;
+module.exports.getGroceries = items
 module.exports.addItem = addItem.bind(this);
+module.exports.Stock = Stock;
+
+module.exports.getLatestItems = getLatestItems
