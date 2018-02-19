@@ -10,13 +10,12 @@ app.get('/items', (req, res) => {
   if (sqlz.getGroceries.isFulfilled) {
     res.send(sqlz.getGroceries)
   }
-  // res.send(sqlz.getGroceries)
 
 })
 
 app.get('/test', (req, res) => {
-  // sqlz.getLatestItems().isFulfilled
-  // sqlz.getLatestItems().isFulfilled
+
+
   sqlz.Stock.findAll({
     logging: console.log  
   }).then((groceries) => {
@@ -31,9 +30,7 @@ app.get('/test', (req, res) => {
     return groceries;
   
   });
-
-  // res.send(sqlz.getLatestItems().then((val) => val));
-})
+});
 
 app.post('/items', jsonParser, (req, res) => {
   console.log(req.body);

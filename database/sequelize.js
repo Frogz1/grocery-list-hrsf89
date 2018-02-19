@@ -28,9 +28,7 @@ const Stock = sequelize.define('stock', {
   updatedAt: Sequelize.DATE
 })
 
-const items =
-
-  Stock.findAll({
+const items =  Stock.findAll({
     logging: console.log  
   }).then((groceries) => {
     groceries = groceries.map((ele) => {
@@ -67,27 +65,8 @@ const addItem = (value) =>  {
     console.log(value)
     return Stock.create({description: value.description, quantity: value.quantity})
   });
-    
-//     ({
-//   quantity: value.quantity,
-//   description: value.description
-// }).then((val) => {
-//   console.log(val);
-// });
 }
   
-
-
-
-  
-
-  // }).spread((items) => {
-  // console.log(items);
-  // console.log(items.get({
-  //   plain: true
-  // }));
-  
-  // console.log(`Description: ${data.description} \n Quantity: ${data.quantity}`);
 
 
 
