@@ -20,11 +20,11 @@ class App extends React.Component {
   
   retrieveList() {
     $.ajax({
-      url: '/items',
+      url: '/test',
       contentType: 'application/json',
       success: (val) => {
         this.setState({
-          list: val.fulfillmentValue
+          list: val
         })
       }
     })
@@ -40,7 +40,7 @@ class App extends React.Component {
       contentType: 'application/json',
       success: (data) => {
         if (data) {
-          
+
           this.retrieveList();
         }
       }
